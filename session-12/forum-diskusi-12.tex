@@ -1,0 +1,287 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{url}
+\usetikzlibrary{matrix}
+\begin{document}
+\pagestyle{empty}
+
+\begin{enumerate}[itemsep=1em,leftmargin=*]
+  \item Regresi Linear Sederhana
+  
+  ABSORB:
+
+  \begin{enumerate}
+    \item \url{https://www.ibm.com/think/topics/linear-regression}
+    \item \url{https://www.colorado.edu/amath/sites/default/files/attached-files/ch12_0.pdf}
+  \end{enumerate}
+
+  DO:
+
+  \begin{enumerate}
+    \item Jelaskan dengan kata-kata dan pendapat anda sendiri, apa itu garis regresi dan mengapa garis itu dianggap sebagai garis yang paling cocok?
+    
+    \textbf{Jawaban:}
+    
+    Garis regresi adalah garis lurus yang menggambarkan hubungan linear antara dua variabel, yaitu variabel independen (x) dan variabel dependen (y). Garis ini merupakan representasi matematis dari trend atau pola hubungan antara kedua variabel tersebut.
+    
+    Garis regresi dianggap sebagai garis yang paling cocok karena:
+    \begin{itemize}
+      \item \textbf{Meminimalkan kesalahan}: Garis ini diperoleh melalui metode kuadrat terkecil (least squares method) yang meminimalkan jumlah kuadrat selisih antara nilai observasi dengan nilai prediksi.
+      \item \textbf{Mengurangi jarak total}: Jarak vertikal dari setiap titik data ke garis regresi diminimalkan secara keseluruhan.
+      \item \textbf{Memberikan prediksi terbaik}: Dengan kriteria statistik yang objektif, garis ini memberikan prediksi yang paling akurat untuk nilai y berdasarkan nilai x yang diberikan.
+      \item \textbf{Memiliki sifat matematis optimal}: Garis regresi memiliki sifat bahwa jumlah residual (selisih) sama dengan nol, dan varians residual minimum.
+    \end{itemize}
+    
+
+    \item Tentukan persamaan regresi linear yang dapat dibentuk dari tabel berikut, dimana x menyatakan jumlah jam belajar dan y menyatakan nilai ujian.
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      x & 1 & 2 & 3 & 4 & 5 \\
+      \hline
+      y & 60 & 70 & 80 & 90 & 100 \\
+      \hline
+    \end{tabular}
+    
+    \textbf{Jawaban:}
+
+    Menentukan persamaan regresi linear $y = a + bx$.
+    
+    \begin{enumerate}[itemsep=1em,leftmargin=*]
+      \item Menghitung rata-rata dari kedua variabel $x$ dan $y$ terlebih dahulu
+
+      \vspace{1em}
+      
+      \(\bar{x} = \frac{1+2+3+4+5}{5} = \frac{15}{5} = 3\)
+
+      \vspace{1em}
+
+      \(\bar{y} = \frac{60+70+80+90+100}{5} = \frac{400}{5} = 80\)
+
+      \item Menghitung koefisien $b$ (slope)
+      
+      \vspace{1em}
+
+      \(b = \frac{n\Sigma xy - \Sigma x \Sigma y}{n\Sigma x^2 - (\Sigma x)^2}\)
+
+      \begin{tabular}{|c|c|c|c|}
+        \hline
+        $x$ & $y$ & $x^2$ & $xy$ \\
+        \hline
+        1 & 60 & 1 & 60 \\
+        2 & 70 & 4 & 140 \\
+        3 & 80 & 9 & 240 \\
+        4 & 90 & 16 & 360 \\
+        5 & 100 & 25 & 500 \\
+        \hline
+        \(\Sigma x = 15\) & \(\Sigma y = 400\) & \(\Sigma x^2 = 55\) & \(\Sigma xy = 1300\) \\
+        \hline
+      \end{tabular}
+
+      \vspace{1em}
+
+      \(b = \frac{5(1300) - (15)(400)}{5(55) - (15)^2}\)
+      
+      \vspace{1em}
+
+      \(b = \frac{6500 - 6000}{275 - 225} = \frac{500}{50} = 10\)
+      
+      \item Menghitung koefisien $a$ (intercept)
+      
+      \(a = \bar{y} - b\bar{x}\)
+
+      \(a = 80 - 10(3)\)
+
+      \(a = 80 - 30 = 50\)
+
+      \(a = 50\)
+
+      \item Sehingga persamaan regresi linear adalah:
+      
+      \(y = 50 + 10x\)
+      
+    \end{enumerate}
+    
+    \textbf{Langkah 2: Hitung koefisien b (slope)}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      $x_i$ & $y_i$ & $(x_i - \bar{x})$ & $(y_i - \bar{y})$ & $(x_i - \bar{x})(y_i - \bar{y})$ & $(x_i - \bar{x})^2$ \\
+      \hline
+      1 & 60 & -2 & -20 & 40 & 4 \\
+      2 & 70 & -1 & -10 & 10 & 1 \\
+      3 & 80 & 0 & 0 & 0 & 0 \\
+      4 & 90 & 1 & 10 & 10 & 1 \\
+      5 & 100 & 2 & 20 & 40 & 4 \\
+      \hline
+      & & & Total & 100 & 10 \\
+      \hline
+    \end{tabular}
+    
+    \begin{align}
+    b = \frac{100}{10} = 10
+    \end{align}
+    
+    \textbf{Langkah 3: Hitung koefisien a (intercept)}
+    \begin{align}
+    a &= \bar{y} - b\bar{x} = 80 - 10(3) = 80 - 30 = 50
+    \end{align}
+    
+    \textbf{Persamaan regresi linear:} $\boxed{y = 50 + 10x}$
+    
+    \textbf{Interpretasi:}
+    \begin{itemize}
+      \item Setiap penambahan 1 jam belajar akan meningkatkan nilai ujian sebesar 10 poin
+      \item Jika tidak belajar sama sekali (x=0), nilai dasar yang diperkirakan adalah 50
+    \end{itemize}
+
+  \end{enumerate}
+
+  \item Regresi Linear Berganda
+  
+  ABSORB:
+
+  \begin{enumerate}
+    \item \url{https://www.investopedia.com/terms/m/mlr.asp}
+    \item \url{https://corporatefinanceinstitute.com/resources/data-science/multiple-linear-regression/}
+  \end{enumerate}
+
+  DO:
+
+  Seorang analis properti ingin mengembangkan sebuah model untuk memprediksi harga rumah di kota. Tujuannya adalah untuk membantu agen properti dan calon pembeli dalam menentukan harga wajar sebuah rumah berdasarkan fitur-fitur utamanya.
+
+  Analis tersebut percaya bahwa harga rumah tidak hanya bergantung pada satu faktor, melainkan dari beberapa faktor sekaligus. Lantas, ia memutuskan untuk menggunakan analisis regresi linear berganda.
+
+  Variable yang digunakan:
+  Analis mengumpulkan data dari 30 rumah yang baru saja terjual di kota.
+  \begin{itemize}
+    \item Variabel Dependen (Y) = harga rumah (dalam jutaan rupiah)
+    \item Variabel Independen 1 (X1) = luas bangunan (dalam meter persegi)
+    \item Variabel Independen 2 (X2) = jumlah kamar tidur (jumlah unit)
+    \item Variabel Independen 3 (X3) = jarak ke pusat kota (dalam kilometer)
+  \end{itemize}
+
+  SeSetelah melakukan analisis data, analis tersebut menemukan model persamaan regresi sebagai berikut : \(Y = 50 + 1,5 X1 + 25 X2 - 10 X3\). Selain itu ditemukan nilai R-squared sebesar 0,85.
+
+  Pertanyaan:
+  Bagaimana anda menginterpretasikan persamaan tersebut?
+  
+  \textbf{Jawaban:}
+  
+  Persamaan regresi $Y = 50 + 1,5 X_1 + 25 X_2 - 10 X_3$ dapat diinterpretasikan sebagai berikut:
+  
+  \textbf{Interpretasi Koefisien:}
+  \begin{itemize}
+    \item \textbf{Konstanta (50):} Nilai dasar harga rumah adalah 50 juta rupiah ketika semua variabel independen bernilai nol.
+    
+    \item \textbf{Koefisien $X_1$ (1,5):} Setiap penambahan 1 meter persegi luas bangunan akan meningkatkan harga rumah sebesar 1,5 juta rupiah, dengan asumsi variabel lain tetap (ceteris paribus).
+    
+    \item \textbf{Koefisien $X_2$ (25):} Setiap penambahan 1 kamar tidur akan meningkatkan harga rumah sebesar 25 juta rupiah, dengan asumsi variabel lain tetap.
+    
+    \item \textbf{Koefisien $X_3$ (-10):} Setiap penambahan 1 kilometer jarak ke pusat kota akan menurunkan harga rumah sebesar 10 juta rupiah, dengan asumsi variabel lain tetap. Tanda negatif menunjukkan hubungan terbalik.
+  \end{itemize}
+  
+  \textbf{Analisis Model:}
+  \begin{itemize}
+    \item \textbf{R-squared = 0,85:} Model ini mampu menjelaskan 85\% variasi harga rumah, yang menunjukkan model memiliki kekuatan prediksi yang sangat baik.
+    
+    \item \textbf{Faktor paling berpengaruh:} Jumlah kamar tidur memiliki dampak terbesar terhadap harga (koefisien 25), diikuti oleh jarak ke pusat kota (koefisien -10) dan luas bangunan (koefisien 1,5).
+    
+    \item \textbf{Validitas ekonomi:} Model ini masuk akal secara ekonomi karena rumah dengan luas lebih besar dan kamar lebih banyak umumnya lebih mahal, sedangkan rumah yang jauh dari pusat kota cenderung lebih murah.
+  \end{itemize}
+  
+  \textbf{Contoh Prediksi:}
+  
+  Rumah dengan luas 100 m², 3 kamar tidur, dan berjarak 5 km dari pusat kota:
+  \begin{align}
+  Y &= 50 + 1,5(100) + 25(3) - 10(5) \\
+  &= 50 + 150 + 75 - 50 = 225 \text{ juta rupiah}
+  \end{align}
+
+  \item Polynomial Regression
+  
+  ABSORB:
+
+  Cermati materi regresi polinomial berikut:
+  \begin{enumerate}
+    \item \url{https://home.iitk.ac.in/~shalab/regression/Chapter12-Regression-PolynomialRegression.pdf}
+    \item \url{https://www.geeksforgeeks.org/machine-learning/python-implementation-of-polynomial-regression/}
+    \item \url{https://www.geeksforgeeks.org/machine-learning/linear-vs-polynomial-regression-understanding-the-differences/}
+  \end{enumerate}
+
+  DO:
+
+  Seorang analis data mencoba memodelkan hubungan antara pengeluaran iklan bulanan dan jumlah pengunjung situs web. Setelah membuat plot data, ia melihat bahwa hubungan antara kedua variabel tersebut tidak lurus (non-linear), melainkan membentuk kurva.
+
+  Dalam situasi ini mengapa penggunaan regresi polinomial lebih tepat dibandingkan regresi linear sederhana, dan apa resiko utama yang harus diperhatikan saat memilih derajat (pangkat tertinggi) dari polinomial tersebut?
+  
+  \textbf{Jawaban:}
+  
+  \textbf{Mengapa Regresi Polinomial Lebih Tepat:}
+  
+  \begin{enumerate}
+    \item \textbf{Hubungan Non-Linear:} Data menunjukkan hubungan yang membentuk kurva, bukan garis lurus. Regresi linear sederhana hanya dapat menangkap hubungan linear dan akan menghasilkan prediksi yang buruk untuk data non-linear.
+    
+    \item \textbf{Fleksibilitas Model:} Regresi polinomial dapat menangkap pola yang lebih kompleks seperti:
+    \begin{itemize}
+      \item Titik maksimum/minimum (dengan polinomial derajat 2)
+      \item Beberapa titik belok (dengan polinomial derajat lebih tinggi)
+      \item Pola kurva yang tidak dapat direpresentasikan garis lurus
+    \end{itemize}
+    
+    \item \textbf{Akurasi Prediksi:} Model polinomial akan memberikan fit yang lebih baik terhadap data dan prediksi yang lebih akurat dalam rentang data yang ada.
+    
+    \item \textbf{Relevansi Praktis:} Dalam konteks iklan-pengunjung, hubungan non-linear masuk akal karena:
+    \begin{itemize}
+      \item Efektivitas iklan mungkin meningkat pesat pada awalnya
+      \item Mencapai titik saturasi dimana penambahan budget tidak efektif
+      \item Atau bahkan menurun karena over-exposure
+    \end{itemize}
+  \end{enumerate}
+  
+  \textbf{Risiko Utama dalam Memilih Derajat Polinomial:}
+  
+  \begin{enumerate}
+    \item \textbf{Overfitting:}
+    \begin{itemize}
+      \item Model dengan derajat terlalu tinggi akan "menghafal" noise dalam data training
+      \item Performa sangat baik pada data training tetapi buruk pada data baru
+      \item Model menjadi terlalu kompleks dan tidak dapat digeneralisasi
+    \end{itemize}
+    
+    \item \textbf{Underfitting:}
+    \begin{itemize}
+      \item Model dengan derajat terlalu rendah tidak dapat menangkap pola sebenarnya
+      \item Bias tinggi karena model terlalu sederhana
+      \item Prediksi tidak akurat bahkan pada data training
+    \end{itemize}
+    
+    \item \textbf{Instabilitas Numerik:}
+    \begin{itemize}
+      \item Polinomial derajat tinggi dapat menyebabkan masalah numerik
+      \item Koefisien menjadi sangat besar atau sangat kecil
+      \item Prediksi di luar rentang data menjadi tidak realistis
+    \end{itemize}
+    
+    \item \textbf{Interpretabilitas:}
+    \begin{itemize}
+      \item Model menjadi sulit diinterpretasikan ketika derajat terlalu tinggi
+      \item Kehilangan makna bisnis dari koefisien-koefisien
+    \end{itemize}
+  \end{enumerate}
+  
+  \textbf{Solusi untuk Mengatasi Risiko:}
+  \begin{itemize}
+    \item Gunakan cross-validation untuk memilih derajat optimal
+    \item Terapkan regularization (Ridge, Lasso) untuk mencegah overfitting
+    \item Pertimbangkan trade-off antara kompleksitas model dan performa
+    \item Validasi model pada data yang belum pernah dilihat (test set)
+    \item Mulai dengan derajat rendah dan tingkatkan secara bertahap
+  \end{itemize}
+
+\end{enumerate}
+\end{document}
