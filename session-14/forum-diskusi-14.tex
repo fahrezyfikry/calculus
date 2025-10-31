@@ -10,159 +10,163 @@
 \pagestyle{empty}
 
 \begin{enumerate}[itemsep=1em,leftmargin=*]
-  \item Interpolasi Invers
+  \item Reduksi Dimensi dan Optimasi
   
   ABSORB:
 
-  Cermati materi tentang interpolasi invers pada materi-materi berikut:
+  Cermati materi tentang reduksi dimensi berikut ini :
   \begin{enumerate}
-    \item \url{https://www.geeksforgeeks.org/dsa/program-to-implement-inverse-interpolation-using-lagrange-formula/}
-    \item \url{https://www.sangakoo.com/en/unit/inverse-interpolation}
+    \item \url{https://www.geeksforgeeks.org/machine-learning/dimensionality-reduction}
+    \item \url{https://dqlab.id/mengenal-dimensionality-reduction-dalam-machine-learning}
   \end{enumerate}
 
   DO:
 
-  Interpolasi invers memiliki satu kelemahan yakni ia bekerja dengan baik jika fungsi tersebut mononik pada interval yang ditinjau.
+  Dalam konteks optimisasi model machine learning, apakah reduksi dimensi (contohnya menggunakan PCA atau Autoencoder) selalu menguntungkan?
+  
+  Dukung pendapatmu dengan menggunakan contoh.
+
+  Reduksi dimensi dalam konteks optimisasi model machine learning tidak selalu menguntungkan secara mutlak, meskipun sering membawa banyak manfaat. Teknik reduksi dimensi seperti PCA (Principal Component Analysis) atau Autoencoder memiliki keuntungan signifikan dalam mempercepat pelatihan model, mengurangi kompleksitas data, serta mencegah overfitting dengan menghilangkan fitur yang tidak relevan atau redundan. Namun, ada risiko kehilangan informasi penting yang dapat menurunkan akurasi model jika fitur utama yang relevan ikut terbuang.
+
+  Keuntungan Reduksi Dimensi
 
   \begin{enumerate}
-    \item Apa arti monotonik dalam hal ini?
-    
-    Dalam konteks interpolasi invers, kata monotonik mengacu pada sifat fungsi yang selalu bergerak satu arah saja — selalu naik atau selalu turun — tanpa berbalik arah di dalam interval yang sedang dibahas.
-
-    Secara matematis:
-
-    \begin{enumerate}
-      \item Fungsi dikatakan \textbf{monoton naik} (monotonik naik) jika
-      
-      \(x_1 < x_2 \Rightarrow f(x_1) \le f(x_2)\)
-
-      Artinya, ketika \(x\) bertambah, nilai \(f(x)\) juga bertambah (atau tetap).
-
-      \item Fungsi dikatakan \textbf{monoton turun} (monotonik turun) jika
-      
-      \(x_1 < x_2 \Rightarrow f(x_1) \ge f(x_2)\)
-
-      Artinya, ketika \(x\) bertambah, nilai \(f(x)\) berkurang (atau tetap).
-    \end{enumerate}
-    
-    \textbf{Jawaban:}
-    
-    \item Mengapa monotonik menjadi masalah dalam hal interpolasi invers?
-    
-    \textbf{Jawaban:}
-
-    Jika fungsi tidak monotonik, maka satu nilai  \(y\) bisa berasal dari lebih dari satu nilai \(x\).
-
-    Akibatnya:
-
-    \begin{enumerate}
-      \item Fungsi invers \(f^{-1}(y)\) tidak terdefinisi dengan baik karena tidak ada cara unik untuk menentukan nilai \(x\) dari nilai \(y\).
-      \item Interpolasi invers dapat menghasilkan hasil yang ambigu atau tidak akurat karena tidak ada satu solusi tunggal untuk nilai \(x\) yang sesuai dengan nilai \(y\) tertentu.
-      \item Hasil interpolasi bisa sangat bergantung pada titik data yang dipilih, sehingga sulit untuk mendapatkan hasil yang konsisten.
-    \end{enumerate}
-
+    \item Mempercepat proses training dan inferensi model karena jumlah fitur yang lebih sedikit sehingga komputasi lebih efisien.
+    \item Mencegah overfitting dengan menghilangkan fitur yang tidak relevan, sehingga model lebih generalisasi pada data baru.
+    \item Membuat data lebih mudah diinterpretasi dan divisualisasikan, khususnya pada data berdimensi tinggi.
+    \item Autoencoder bahkan dapat mempelajari representasi non-linear fitur data, yang bisa lebih powerful daripada PCA yang linear.
   \end{enumerate}
 
-  \item Polinomial Interpolasi
+  Kerugian dan Risiko
+
+  \begin{enumerate}
+    \item Reduksi dimensi dapat menyebabkan kehilangan informasi yang berharga untuk prediksi jika fitur penting ikut terbuang.
+    \item PCA yang hanya linear kadang kurang efektif jika fitur data memiliki hubungan non-linear, sehingga potensi informasi bisa hilang.
+    \item Autoencoder yang kompleks memerlukan tuning dan arsitektur yang tepat agar tidak menimbulkan underfitting atau overfitting pada representasi latennya.
+  \end{enumerate}
+
+  Contoh Kasus
+
+  Misalnya pada dataset citra wajah dengan ribuan piksel sebagai fitur, Autoencoder digunakan untuk mereduksi dimensi menjadi representasi latent yang jauh lebih kecil (misal dari ribuan menjadi puluhan dimensi). Representasi ini masih cukup kaya informasi untuk klasifikasi wajah (misal beda jenis kelamin) dengan akurasi yang baik dan waktu pelatihan lebih cepat dibanding langsung menggunakan data mentah. Namun, jika terlalu banyak dimensi direduksi atau arsitektur autoencoder kurang tepat, akurasi model bisa menurun.
+  
+  Jadi, apakah reduksi dimensi selalu menguntungkan? Jawabannya tergantung pada konteks dan cara penerapannya. Reduksi dimensi yang tepat dapat sangat menguntungkan dengan membuat model lebih efisien dan general, namun jika tidak hati-hati, bisa terjadi kehilangan informasi penting yang merugikan performa model.
+  
+  Referensi mendalam: teknologi PCA untuk linear dan autoencoder untuk non-linear, dampak efisiensi dan risiko loss informasi, serta contoh pengaplikasian pada dataset high-dimensional.
+
+  Referensi:
+
+  \begin{enumerate}
+    \item \url{https://www.perplexity.ai/search/dalam-konteks-optimisasi-model-eCgeOEhxQPCqP3mBo5Mo8A#0}
+  \end{enumerate}
+  
+  \item Penggunaan Calculus di Machine Learning
+  
+  DO:
+
+  Bagaimana konsep turunan (derivatif / diferensial) dalam kalkulus, khususnya dalam metode seperti gradient descent, memainkan peran krusial dalam proses 'belajar' atau optimisasi parameter pada model machine learning seperti regresi linier atau jaringan saraf tiruan?
+
+  Konsep turunan (derivatif atau diferensial) dalam kalkulus adalah pengukuran bagaimana suatu fungsi berubah seiring perubahan inputnya, atau secara informal, seberapa cepat suatu nilai berubah terhadap perubahan variabelnya. Dalam konteks machine learning, terutama pada metode seperti gradient descent yang digunakan di regresi linier maupun neural network, konsep turunan ini berperan fundamental dalam proses "belajar" atau optimisasi parameter model.
+
+  Arti Turunan dalam Kalkulus
+
+  Turunan dari suatu fungsi $f(x)$, dilambangkan sebagai $f'(x)$ atau $\frac{df}{dx}$, menunjukkan laju perubahan $f(x)$ terhadap $x$. Secara geometris, ini adalah gradien (kemiringan) garis singgung pada grafik fungsi di titik tertentu. Misalnya, jika $f(x) = x^2$, maka $f'(x) = 2x$, yang menunjukkan bahwa untuk setiap perubahan kecil pada $x$, perubahan pada $f(x)$ sekitar dua kali perubahan $x$.
+
+  Peran Turunan dalam Gradient Descent
+
+  Dalam machine learning, model seperti regresi linier atau jaringan saraf tiruan memiliki parameter (misal, bobot dan bias) yang harus dioptimasi agar model memberikan prediksi terbaik. Proses optimasi ini sering kali menggunakan algoritma gradient descent, yang bertujuan meminimalkan fungsi loss (kerugian) dengan memodifikasi parameter secara bertahap.
+
+  \begin{enumerate}
+    \item Turunan dari fungsi loss terhadap tiap parameter menunjukkan arah dan seberapa besar perubahan parameter tersebut agar loss berkurang.
+    \item Gradient descent menggunakan informasi gradien (turunan) ini untuk memperbarui parameter secara iteratif ke arah nilai minimum loss.
+    \item Jika gradiennya positif, parameter dikurangi; jika gradien negatif, parameter ditambah, sesuai prinsip menuruni lereng menuju titik terendah (minimum lokal atau global).
+  \end{enumerate}
+
+  Pengaruh pada Proses Belajar Model
+
+  \begin{enumerate}
+    \item Setiap iterasi training, model menghitung turunan dari fungsi loss terhadap setiap parameter—proses ini disebut backpropagation di neural network.
+    \item Turunan memungkinkan model untuk secara sistematis menemukan kombinasi parameter terbaik yang meminimalkan error prediksi.
+  \end{enumerate}
+
+  Ringkasan
+
+  Turunan adalah inti matematis dari proses optimasi model-machine learning. Tanpa turunan, algoritma seperti gradient descent tidak bisa mengetahui arah dan besar langkah untuk memperbaiki parameter model secara efisien, sehingga proses "belajar" tidak akan terjadi optimal.
+
+  \begin{enumerate}
+    \item \url{https://www.perplexity.ai/search/bagaimana-konsep-turunan-deriv-DGqg3sZrSNqEd7zMfSVtJg#0}
+  \end{enumerate}
+
+  \item Regresi pada Machine Learning
   
   ABSORB:
 
-  Cermati materi tentang interpolasi pada Lecturer Notes week 9 dengan didukung beberapa materi berikut:
+  Cermati materi tentang penggunaan regresi pada pembelajaran mesin berikut:
 
   \begin{enumerate}
-    \item \url{https://www.geeksforgeeks.org/maths/interpolation-formula/}
-    \item \url{https://www.cuemath.com/linear-interpolation-formula/}
+    \item \url{https://www.geeksforgeeks.org/machine-learning/ml-linear-regression}
+  \end{enumerate}
+
+  dan pelajari regresi dari video berikut :
+
+  \begin{enumerate}
+    \item \url{https://www.youtube.com/watch?v=qxo8p8PtFeA}
   \end{enumerate}
 
   DO:
 
-  Kita akan mengukur suhu :
-
-  \begin{itemize}
-    \item Pada jam 2 siang \((X_0 = 2)\), suhunya 20 derajat \((Y_0 = 20)\).
-    \item Pada jam 6 sore \((X_1 = 6)\), suhunya 12 derajat \((Y_1 = 12)\).
-  \end{itemize}
-
-  Tentukan suhu pada jam 4 sore \((X = 4)\).
-
-  \textbf{Jawaban:}
-
-  \(X_0 = 2, Y_0 = 20, X_1 = 6, Y_1 = 12, X = 4\)
-
-  Rumus interpolasi linear:
-
-  \(Y = Y_0 + (X - X_0)\frac{(Y_1 - Y_0)}{(X_1 - X_0)}\)
-
-  Langsung substitusikan nilai yang diketahui:
-
-  \(Y = 20 + (4 - 2)\frac{(12 - 20)}{(6 - 2)}\)
-
-  \(Y = 20 + 2 \times \frac{-8}{4}\)
-
-  \(Y = 20 - 4\)
-
-  \(Y = 16\)
-
-  \item Interpolasi Langrange
+  Seorang peneliti ingin mengetahui apakah ada hubungan linear antara lama waktu belajar (X, dalam jam) per hari dengan nilai ujian (Y) yang diperoleh siswa.
   
-  ABSORB:
+  Peneliti tersebut mengumpulkan data dari 6 siswa sebagai berikut:
 
-  Cermati materi tentang interpolasi Langrange terkait dengan kalkulus yang terdapat pada materi-materi berikut ini :
+  \begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+  \hline
+  \textbf{Siswa} & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+  \textbf{Lama belajar (X)} & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+  \textbf{Nilai Ujian (Y)} & 60 & 65 & 75 & 80 & 85 & 90 \\ \hline
+  \end{tabular}
+  \end{table}
 
-  \begin{enumerate}
-    \item \url{https://www.geeksforgeeks.org/maths/lagrange-interpolation-formula/}
-    \item \url{https://mathworld.wolfram.com/LagrangeInterpolatingPolynomial.html}
-    \item \url{https://brilliant.org/wiki/lagrange-interpolation/}
-  \end{enumerate}
+  Tentukan persamaan garis regresi linear yang memodelkan hubungan antara lama belajar dan nilai ujian tersebut.
 
-  DO:
+  Diketahui:
 
-  Sebuah sensor mengikur data pada titik-titik berikut : \((1, 2)\); \((2, 3)\); dan \((4, 11)\).
+  \(n = 6\)
 
-  \begin{itemize}
-    \item Tentukan polinomial interpolasi langrange yang melewati ketiga titik tersebut.
-    \item Gunakan polinomial yang anda temukan untuk mengestimasi nilai \(Y\) ketika \(X = 3\).
-  \end{itemize}
+  \(\sum X = 1 + 2 + 3 + 4 + 5 + 6 = 21\)
 
-  \textbf{Jawaban:}
+  \(\sum Y = 60 + 65 + 75 + 80 + 85 + 90 = 455\)
 
-  Diketahui titik-titik :
-  
-  \((x_0, y_0) = (1, 2)\); \((x_1, y_1) = (2, 3)\); dan \((x_2, y_2) = (4, 11)\).
+  \(\sum X^2 = 1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2 = 91\)
 
-  Untuk polinomial interpolasi Lagrange, rumusnya adalah:
+  \(\sum XY = (1)(60) + (2)(65) + (3)(75) + (4)(80) + (5)(85) + (6)(90) = 1700\)
 
-  \(P(x) = \sum_{i=0}^{n} y_i L_i(x)\)
+  Dengan rumus garis regresi:
 
-  Sehingga untuk titik-titik di atas didapatkan:
+  \(\quad Y = a + bX\)
 
-  \(P(x) = y_0 L_0(x) + y_1 L_1(x) + y_2 L_2(x)\)
+  \(b = \frac{n\sum XY - (\sum X)(\sum Y)}{n\sum X^2 - (\sum X)^2}\)
 
-  \(L_0(x) = \frac{(x - 2)(x - 4)}{(1 - 2)(1 - 4)} = \frac{(x - 2)(x - 4)}{3}\)
+  \(a = \frac{\sum Y - b\sum X}{n}\)
 
-  \(L_1(x) = \frac{(x - 1)(x - 4)}{(2 - 1)(2 - 4)} = -\frac{(x - 1)(x - 4)}{2}\)
+  Mencari nilai \(a\) dan \(b\) :
 
-  \(L_2(x) = \frac{(x - 1)(x - 2)}{(4 - 1)(4 - 2)} = \frac{(x - 1)(x - 2)}{6}\)
+  \(a = \frac{455 - (6.142857)(21)}{6}\)
 
-  Polinomial lengkap didapatkan dengan substitusi nilai \(y_i\):
+  \(a = 54.333333\) atau \(a = \frac{163}{3}\)
 
-  \(P(x) = 2 \cdot \frac{(x - 2)(x - 4)}{3} + 3 \cdot \left(-\frac{(x - 1)(x - 4)}{2}\right) + 11 \cdot \frac{(x - 1)(x - 2)}{6}\)
+  \(b = \frac{6(1700) - (21)(455)}{6(91) - (21)^2}\)
 
-  \(P(x) = \frac{4(x - 2)(x - 4)- 9(x - 1)(x - 4) + 11(x - 1)(x - 2)}{6}\)
+  \(b = \frac{10200 - 9555}{546 - 441}\)
 
-  \(P(x) = \frac{4x^2 - 24x + 32 - 9x^2 + 45x - 36 + 11x^2 - 33x + 22}{6}\)
+  \(b = \frac{645}{105}\)
 
-  \(P(x) = \frac{6x^2 - 12x + 18}{6}\)
+  \(b = 6.142857\) atau \(b = \frac{43}{7}\)
 
-  \(P(x) = x^2 - 2x + 3\)
+  Jadi
 
-  Untuk mengestimasi nilai \(Y\) ketika \(X = 3\):
-
-  \(P(3) = 3^2 - 2(3) + 3\)
-
-  \(P(3) = 9 - 6 + 3\)
-
-  \(P(3) = 6\)
+  \(\hat{Y} = 54.33 + 6.14X\) atau \(\hat{Y} = \frac{163}{3} + \frac{43}{7}X\)
 
 \end{enumerate}
 \end{document}
