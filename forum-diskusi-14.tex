@@ -1,0 +1,168 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{url}
+\usetikzlibrary{matrix}
+\begin{document}
+\pagestyle{empty}
+
+\begin{enumerate}[itemsep=1em,leftmargin=*]
+  \item Interpolasi Invers
+  
+  ABSORB:
+
+  Cermati materi tentang interpolasi invers pada materi-materi berikut:
+  \begin{enumerate}
+    \item \url{https://www.geeksforgeeks.org/dsa/program-to-implement-inverse-interpolation-using-lagrange-formula/}
+    \item \url{https://www.sangakoo.com/en/unit/inverse-interpolation}
+  \end{enumerate}
+
+  DO:
+
+  Interpolasi invers memiliki satu kelemahan yakni ia bekerja dengan baik jika fungsi tersebut mononik pada interval yang ditinjau.
+
+  \begin{enumerate}
+    \item Apa arti monotonik dalam hal ini?
+    
+    Dalam konteks interpolasi invers, kata monotonik mengacu pada sifat fungsi yang selalu bergerak satu arah saja — selalu naik atau selalu turun — tanpa berbalik arah di dalam interval yang sedang dibahas.
+
+    Secara matematis:
+
+    \begin{enumerate}
+      \item Fungsi dikatakan \textbf{monoton naik} (monotonik naik) jika
+      
+      \(x_1 < x_2 \Rightarrow f(x_1) \le f(x_2)\)
+
+      Artinya, ketika \(x\) bertambah, nilai \(f(x)\) juga bertambah (atau tetap).
+
+      \item Fungsi dikatakan \textbf{monoton turun} (monotonik turun) jika
+      
+      \(x_1 < x_2 \Rightarrow f(x_1) \ge f(x_2)\)
+
+      Artinya, ketika \(x\) bertambah, nilai \(f(x)\) berkurang (atau tetap).
+    \end{enumerate}
+    
+    \textbf{Jawaban:}
+    
+    \item Mengapa monotonik menjadi masalah dalam hal interpolasi invers?
+    
+    \textbf{Jawaban:}
+
+    Jika fungsi tidak monotonik, maka satu nilai  \(y\) bisa berasal dari lebih dari satu nilai \(x\).
+
+    Akibatnya:
+
+    \begin{enumerate}
+      \item Fungsi invers \(f^{-1}(y)\) tidak terdefinisi dengan baik karena tidak ada cara unik untuk menentukan nilai \(x\) dari nilai \(y\).
+      \item Interpolasi invers dapat menghasilkan hasil yang ambigu atau tidak akurat karena tidak ada satu solusi tunggal untuk nilai \(x\) yang sesuai dengan nilai \(y\) tertentu.
+      \item Hasil interpolasi bisa sangat bergantung pada titik data yang dipilih, sehingga sulit untuk mendapatkan hasil yang konsisten.
+    \end{enumerate}
+
+  \end{enumerate}
+
+  \item Polinomial Interpolasi
+  
+  ABSORB:
+
+  Cermati materi tentang interpolasi pada Lecturer Notes week 9 dengan didukung beberapa materi berikut:
+
+  \begin{enumerate}
+    \item \url{https://www.geeksforgeeks.org/maths/interpolation-formula/}
+    \item \url{https://www.cuemath.com/linear-interpolation-formula/}
+  \end{enumerate}
+
+  DO:
+
+  Kita akan mengukur suhu :
+
+  \begin{itemize}
+    \item Pada jam 2 siang \((X_0 = 2)\), suhunya 20 derajat \((Y_0 = 20)\).
+    \item Pada jam 6 sore \((X_1 = 6)\), suhunya 12 derajat \((Y_1 = 12)\).
+  \end{itemize}
+
+  Tentukan suhu pada jam 4 sore \((X = 4)\).
+
+  \textbf{Jawaban:}
+
+  \(X_0 = 2, Y_0 = 20, X_1 = 6, Y_1 = 12, X = 4\)
+
+  Rumus interpolasi linear:
+
+  \(Y = Y_0 + (X - X_0)\frac{(Y_1 - Y_0)}{(X_1 - X_0)}\)
+
+  Langsung substitusikan nilai yang diketahui:
+
+  \(Y = 20 + (4 - 2)\frac{(12 - 20)}{(6 - 2)}\)
+
+  \(Y = 20 + 2 \times \frac{-8}{4}\)
+
+  \(Y = 20 - 4\)
+
+  \(Y = 16\)
+
+  \item Interpolasi Langrange
+  
+  ABSORB:
+
+  Cermati materi tentang interpolasi Langrange terkait dengan kalkulus yang terdapat pada materi-materi berikut ini :
+
+  \begin{enumerate}
+    \item \url{https://www.geeksforgeeks.org/maths/lagrange-interpolation-formula/}
+    \item \url{https://mathworld.wolfram.com/LagrangeInterpolatingPolynomial.html}
+    \item \url{https://brilliant.org/wiki/lagrange-interpolation/}
+  \end{enumerate}
+
+  DO:
+
+  Sebuah sensor mengikur data pada titik-titik berikut : \((1, 2)\); \((2, 3)\); dan \((4, 11)\).
+
+  \begin{itemize}
+    \item Tentukan polinomial interpolasi langrange yang melewati ketiga titik tersebut.
+    \item Gunakan polinomial yang anda temukan untuk mengestimasi nilai \(Y\) ketika \(X = 3\).
+  \end{itemize}
+
+  \textbf{Jawaban:}
+
+  Diketahui titik-titik :
+  
+  \((x_0, y_0) = (1, 2)\); \((x_1, y_1) = (2, 3)\); dan \((x_2, y_2) = (4, 11)\).
+
+  Untuk polinomial interpolasi Lagrange, rumusnya adalah:
+
+  \(P(x) = \sum_{i=0}^{n} y_i L_i(x)\)
+
+  Sehingga untuk titik-titik di atas didapatkan:
+
+  \(P(x) = y_0 L_0(x) + y_1 L_1(x) + y_2 L_2(x)\)
+
+  \(L_0(x) = \frac{(x - 2)(x - 4)}{(1 - 2)(1 - 4)} = \frac{(x - 2)(x - 4)}{3}\)
+
+  \(L_1(x) = \frac{(x - 1)(x - 4)}{(2 - 1)(2 - 4)} = -\frac{(x - 1)(x - 4)}{2}\)
+
+  \(L_2(x) = \frac{(x - 1)(x - 2)}{(4 - 1)(4 - 2)} = \frac{(x - 1)(x - 2)}{6}\)
+
+  Polinomial lengkap didapatkan dengan substitusi nilai \(y_i\):
+
+  \(P(x) = 2 \cdot \frac{(x - 2)(x - 4)}{3} + 3 \cdot \left(-\frac{(x - 1)(x - 4)}{2}\right) + 11 \cdot \frac{(x - 1)(x - 2)}{6}\)
+
+  \(P(x) = \frac{4(x - 2)(x - 4)- 9(x - 1)(x - 4) + 11(x - 1)(x - 2)}{6}\)
+
+  \(P(x) = \frac{4x^2 - 24x + 32 - 9x^2 + 45x - 36 + 11x^2 - 33x + 22}{6}\)
+
+  \(P(x) = \frac{6x^2 - 12x + 18}{6}\)
+
+  \(P(x) = x^2 - 2x + 3\)
+
+  Untuk mengestimasi nilai \(Y\) ketika \(X = 3\):
+
+  \(P(3) = 3^2 - 2(3) + 3\)
+
+  \(P(3) = 9 - 6 + 3\)
+
+  \(P(3) = 6\)
+
+\end{enumerate}
+\end{document}
